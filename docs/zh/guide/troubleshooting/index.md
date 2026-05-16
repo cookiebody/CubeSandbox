@@ -1,51 +1,33 @@
-# 故障排障
+# 故障排查
 
-::: warning 必须同时提交中英文
-本栏目所有投稿都必须同时包含 `docs/guide/troubleshooting/` 下的英文文件和 `docs/zh/guide/troubleshooting/` 下的中文文件。只更新单一语言的 PR 不会被合并。
+::: warning 需要双语 PR
+本目录下的每篇贡献都必须同时包含英文文件（`docs/guide/troubleshooting/`）和中文文件（`docs/zh/guide/troubleshooting/`）。只更新一种语言的 PR 不会被合并。
 :::
 
-这里收录 Cube Sandbox 在部署、使用与运维过程中遇到的真实问题与解决方案。我们更欢迎可复现、可验证、可直接落地的排障经验。
+本页面收集了 Cube Sandbox 在部署、配置和运行过程中的真实故障排查文章。
 
-## 适合收录的内容
+## 文章列表
 
-- 部署失败与环境相关坑位
-- 运行时报错、网络问题、鉴权问题
-- 升级回归、版本兼容性说明与恢复方法
-- 来自真实事故或高频咨询的 FAQ 式运维指南
+| 文章 | 标签 |
+|------|------|
+| [设置 CUBE_PVM_ENABLE=1 但未使用 PVM 内核](./pvm-enable-overridden-by-env) | 部署, PVM |
+| [重启后 kvm_pvm 模块未加载](./kvm-pvm-missing-after-reboot) | 部署, PVM |
+| [服务器重启后 network-agent 丢失](./network-agent-missing-after-reboot) | 运维, 服务 |
+| [disable_tso 字段缺失错误](./disable-tso-missing-field) | 配置, shim |
+| [模板构建卡在 UNPACKING 阶段](./template-build-stuck-unpacking) | 模板, 磁盘 |
+| [模板没有可用副本](./template-no-ready-replica) | 模板, 集群 |
+| [envd stdout 输出被截断](./envd-stdout-truncated) | 运行时, envd |
+| [envd 需要 Basic Auth 认证](./envd-basic-auth-required) | 运行时, envd, 鉴权 |
+| [CoreDNS 容器反复重启](./coredns-repeatedly-restarts) | 网络, DNS |
+| [磁盘空间不足](./insufficient-disk-space) | 运维, 磁盘 |
 
 ## 如何贡献
 
-1. 复制当前目录下的 `_template.md`，并改名为英文 kebab-case 文件名，例如 `e2b-api-401-timeout.md`。
-2. 同时创建这两个文件：
+1. 复制 `_template.md` 并重命名为英文短横线命名的文件名，如 `e2b-api-401-timeout.md`。
+2. 同时创建两个文件：
    - `docs/guide/troubleshooting/<slug>.md`
    - `docs/zh/guide/troubleshooting/<slug>.md`
-3. 中英文文件名必须保持一致，便于双语站点保持 URL 对应关系。
-4. 按要求填写 frontmatter，并完成排障说明各章节。
-5. 在中英文两个索引页的文章列表中各追加一行。
-6. 提交 PR 时请补充足够背景，方便 reviewer 验证问题与修复方式。
-
-## 命名与 frontmatter 规范
-
-- 文件名必须使用英文 kebab-case。
-- 不允许使用中文文件名。
-- 中英文目录必须使用相同 slug。
-- 两个语言版本的 frontmatter key 应保持一致。
-
-```md
----
-title: 反向代理场景下 E2B API 401 超时
-author: your-github-id
-date: 2026-05-14
-tags:
-  - api
-  - auth
-  - reverse-proxy
-lang: zh-CN
----
-```
-
-## 已发布文章
-
-| 标题 | 作者 | 日期 | 标签 |
-| --- | --- | --- | --- |
-| _在这里补充你的文章_ | - | - | - |
+3. 两种语言的文件名必须保持一致，以确保 URL 对齐。
+4. 填写 frontmatter 字段并完成排查章节。
+5. 将你的文章添加到上方中英文索引页的表格中。
+6. 提交 PR，提供足够的上下文让审阅者验证问题和解决方案。
